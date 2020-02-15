@@ -20,13 +20,13 @@ $(document).ready( () => {
     })
 
     $.ajax({
-        url: 'http://0.0.0.0:5001/api/v1/status/',
+        url: 'http://0.0.0.0:5000/api/v1/status/',
         crossDomain: true
     }).done((data) => {
         if (data.status === 'OK') {
-            $('.api_status').addClass('avaliable')
+            $('#api_status').addClass('available')
         } else {
-            $('.api_status').removeClass('avaliable')
+            $('#api_status').removeClass('available')
         }
         
         console.log(data)
