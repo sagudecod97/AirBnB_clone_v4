@@ -25,6 +25,12 @@
 .container .filters .amenities {
 	width: 25%;
 }
+.container .filters h4 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-height: fit-content;
+}
 
 .container .filters button {
 	font-size: 18px;
