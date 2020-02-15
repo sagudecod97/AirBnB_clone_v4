@@ -23,12 +23,6 @@ def teardown_db(exception):
     """
     storage.close()
 
-@app.route('/api/v1/status/', strict_slashes=False)
-def rout_status():
-    if request.method == 'GET':
-        resp = {"status": "OK"}
-        return jsonify(resp)
-
 @app.route('/2-hbnb/')
 def hbnb_filters(the_id=None):
     """
