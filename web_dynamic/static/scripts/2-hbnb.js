@@ -24,7 +24,7 @@ $(document).ready( () => {
         crossDomain: true
     }).done((data) => {
         if (data.status === 'OK') {
-            $('#api_status').addClass('available')
+            $('#api_status').addClass('available23')
         } else {
             $('#api_status').removeClass('available')
         }

@@ -1,9 +1,7 @@
 $(document).ready( () => {
-    
     let amenList = []
     let amenListNam = []
     $('input').click(function () {
-         
         if($(this).prop('checked')) {
             amenList.push($(this).attr('data-id'));
             amenListNam.push($(this).attr('data-name'));
@@ -11,12 +9,10 @@ $(document).ready( () => {
             amenList = amenList.filter(amenity => amenity != $(this).attr('data-id'))
             amenListNam = amenListNam.filter(name => name != $(this).attr('data-name'))
         }
-
         $('.amenities h4').text(amenListNam.join(', '))
         console.log($(this).prop('checked'));
         console.log(amenList)
     })
-
     $.ajax({
         url: 'http://0.0.0.0:5001/api/v1/status/',
         crossDomain: true
@@ -26,22 +22,20 @@ $(document).ready( () => {
         } else {
             $('.api_status').removeClass('avaliable')
         }
-        
-        console.log(data)
     })
-
     const appendData = (objs) => {
-        for (obj of objs.resposeJSON) {
+
+        for (let obj of objs['responseJSON']) {
             $.ajax({
-                url: `http://0.0.0.0:5001/api/v1/users/${obj.user_id}/`,
+                url: `http://0.0.0.0:5000/api/v1/users/${obj.user_id}/`,
                 async: false,
                 complete: (user) => {
-                    user = user.resposeJSON;
+                    user = JSON.parse(Object.values(user)[16])
                     $('.places').append(`
                     <article>
                         <div class="title">
                             <h2> ${obj.name} </h2>
-                            div class="price_by_night">$
+                            <div class="price_by_night">$
                                 ${obj.price_by_night}
                             </div>
                         </div>
@@ -71,13 +65,12 @@ $(document).ready( () => {
             })
         }
     }
-
     $.ajax({
         type: 'POST',
-        url: 'http://0.0.0.0:5000/api/v1/places_search',
-        data: {},
+        url: 'http://0.0.0.0:5000/api/v1/places_search/',
+        data: '{}',
         contentType: 'application/json',
         dataType: 'json',
         complete: appendData
     })
-});
+})
